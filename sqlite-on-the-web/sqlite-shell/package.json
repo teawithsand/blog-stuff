@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@sqlite.org/sqlite-wasm": "^3.45.1-build1",
-    "i": "^0.3.7",
-    "npm": "^10.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
