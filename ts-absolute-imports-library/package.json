@@ -4,11 +4,17 @@
   "description": "Testing package",
   "main": "index.js",
   "scripts": {
-    "build": "tspc"
+    "build": "tspc",
+    "test": "jest"
   },
   "author": "myself",
   "license": "WTFPL",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "ts-patch": "^3.1.2",
     "typescript": "^5.4.2",
     "typescript-transform-paths": "^3.4.7"
