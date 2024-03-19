@@ -1,0 +1,1 @@
+export const heckWorld = () => console.log("Hell world!")

@@ -1,0 +1,16 @@
+{
+  "name": "test-package-one",
+  "version": "2.1.37",
+  "description": "Testing package",
+  "main": "index.js",
+  "scripts": {
+    "build": "tspc"
+  },
+  "author": "myself",
+  "license": "WTFPL",
+  "devDependencies": {
+    "ts-patch": "^3.1.2",
+    "typescript": "^5.4.2",
+    "typescript-transform-paths": "^3.4.7"
+  }
+}
