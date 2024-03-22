@@ -1,4 +1,6 @@
-export const encodeToDataUrl = (mime: string, data: string): string => `data:${mime};charset=utf-8;base64,${btoa(data)}`
+import { b64encode } from "./base64";
+
+export const encodeToDataUrl = (mime: string, data: string): string => `data:${mime};charset=utf-8;base64,${b64encode(data)}`
 var globalAbsolutizeAnchor: HTMLAnchorElement | null = null
 
 export const getAbsoluteUrl = (relativeUrl: string): string => {
