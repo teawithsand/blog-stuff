@@ -26,7 +26,9 @@ export const Runner = (props: {
     }, [policy])
 
     useEffect(() => {
-        const blob = new Blob([siteCode])
+        const blob = new Blob([siteCode], {
+            type: "text/html", // if you won't do that it'll work on FF, but not on chrome
+        })
         const url = URL.createObjectURL(blob)
         setUrl(url)
         return () => {
