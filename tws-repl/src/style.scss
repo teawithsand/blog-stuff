@@ -1,0 +1,284 @@
+$indent-margin: 0.5em;
+
+.c-repl {
+	display: grid;
+	grid-template-rows: minmax(0, 1fr) auto auto;
+
+	font-family: monospace;
+	padding: 0.5em 0.3em;
+	background-color: rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 5px;
+
+	overflow: hidden;
+	$self: &;
+
+	display: grid;
+	grid-auto-flow: row;
+	gap: 0.3em;
+
+	&-global {
+		height: 100%;
+		max-height: 100%;
+	}
+
+	&--global {
+		height: 100%;
+		max-height: 100%;
+		margin: 0;
+		border-radius: 0;
+	}
+
+	&__no-history {
+		font-style: italic;
+	}
+
+	&__history {
+		padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+		height: min-content;
+		max-height: 100%;
+
+		display: grid;
+		grid-auto-flow: row;
+		gap: 0;
+
+		overflow: auto;
+	}
+
+	&__entry {
+		display: grid;
+		grid-template-areas:
+			"tag code"
+			"res res";
+		grid-template-columns: auto 1fr;
+		// grid-template-columns: min-content auto;
+		grid-template-rows: auto auto;
+		gap: 0;
+		row-gap: .3em;
+
+		padding-bottom: 0.3em;
+		padding-top: 0.6em;
+		border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+			border: none;
+		}
+	}
+
+	&__code-tag {
+		display: block;
+		grid-area: tag;
+		
+		padding-right: 0.2em;
+
+		&--ok {
+		}
+
+		&--err {
+			color: #ff0000;
+		}
+
+		&--log {
+			color: rgb(211, 22, 202);
+		}
+	}
+
+	&__code {
+		grid-area: code;
+
+		font-style: italic;
+		display: flex;
+		flex-flow: row nowrap;
+		gap: 0.2em;
+
+		pre,
+		code {
+			display: block;
+			font-family: inherit;
+
+			font-size: 1em;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	&__val {
+		grid-area: res;
+		width: 100%;
+	}
+
+	&__input {
+		display: block;
+		width: 100%;
+
+		border: none;
+
+		background-color: rgba(0, 0, 0, 0.05);
+		padding: 0.3em;
+
+		&:focus {
+			outline: none;
+			border: none;
+		}
+	}
+
+	&__separator {
+		display: block;
+		width: 100%;
+		border-top: 1px solid rgba(0, 0, 0, 0.25);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+	}
+}
+
+.c-val-expl {
+	display: flex;
+	flex-flow: column nowrap;
+	word-break: break-all;
+
+	&--root {
+		font-family: monospace;
+		padding: 0.3em;
+		background-color: rgba(0, 0, 0, 0.05);
+		border: 1px solid rgba(0, 0, 0, 0.125);
+		border-radius: 5px;
+	}
+
+	&__header {
+		display: flex;
+		flex-flow: row nowrap;
+		gap: 0.3em;
+	}
+	&__content {
+		margin-left: $indent-margin;
+	}
+
+	& {
+		&__f-obj-wrapper {
+			display: flex;
+			gap: 0;
+			flex-flow: row nowrap;
+			color: rgb(5, 81, 174);
+		}
+		&__f-obj-content {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-flow: row wrap;
+
+			// this is fine, but result is not selectable,
+			// which is not what we want
+			// &::before {
+			//     content: "{";
+			//     margin-right: .3em;
+			// }
+			// &::after {
+			//     content: "}";
+			//     margin-left: .3em;
+			// }
+		}
+		&__f-obj-key,
+		&__f-obj-name {
+			margin-right: 0.3em;
+		}
+		&__f-paren-close {
+			margin-left: 0.3em;
+		}
+		&__f-obj-name,
+		&__f-paren-open,
+		&__f-paren-close,
+		&__f-obj-more {
+			word-break: keep-all;
+		}
+		&__f-obj-value {
+			// noop
+			display: inline;
+		}
+		// $self: &;
+		&__f-obj-tuple {
+			display: flex;
+			flex-flow: row nowrap;
+			margin-left: 0.3em;
+
+			// same select issue
+			// &:not(:last-child) > #{$self}__f-obj-value {
+			//     margin-right: 0.6em;
+			//     &::after {
+			//         user-select: text;
+			//         content: ",";
+			//     }
+			// }
+		}
+	}
+
+	& {
+		&__obj-wrapper {
+			display: flex;
+			flex-flow: column nowrap;
+			color: rgb(5, 81, 174);
+		}
+		&__obj-content {
+			list-style-type: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-flow: column nowrap;
+
+			margin-left: $indent-margin;
+		}
+		&__obj-key {
+			margin-right: 0.3em;
+		}
+		&__obj-value {
+			display: inline;
+		}
+		&__obj-tuple {
+			margin-right: 0.6em;
+			display: flex;
+			flex-flow: row nowrap;
+		}
+	}
+
+	&__number,
+	&__bigint {
+		color: green;
+	}
+
+	&__null,
+	&__undefined,
+	&__symbol,
+	&__function {
+		color: rgb(211, 22, 202);
+	}
+
+	&__function-code {
+		pre,
+		code {
+			tab-size: 2;
+			font-family: inherit;
+
+			font-size: 1em;
+			padding: 0;
+			margin: 0;
+			overflow-x: auto;
+			overflow-y: auto;
+			max-height: 80vh;
+		}
+	}
+
+	&__string {
+		color: rgb(67, 67, 163);
+	}
+
+	&__else {
+		// todo?
+	}
+}
